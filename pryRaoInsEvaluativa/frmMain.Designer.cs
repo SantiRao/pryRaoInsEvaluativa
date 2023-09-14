@@ -30,16 +30,16 @@
         {
             this.StaStrip = new System.Windows.Forms.StatusStrip();
             this.FechHoraStatustrip = new System.Windows.Forms.ToolStripStatusLabel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.FechayHoraBien = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mspGestionMain = new System.Windows.Forms.MenuStrip();
             this.gestionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registroDeProveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoReportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.activosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.FechayHoraBien = new System.Windows.Forms.ToolStripStatusLabel();
             this.StaStrip.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.mspGestionMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // StaStrip
@@ -58,16 +58,23 @@
             this.FechHoraStatustrip.Name = "FechHoraStatustrip";
             this.FechHoraStatustrip.Size = new System.Drawing.Size(0, 17);
             // 
-            // menuStrip1
+            // FechayHoraBien
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FechayHoraBien.Name = "FechayHoraBien";
+            this.FechayHoraBien.Size = new System.Drawing.Size(27, 17);
+            this.FechayHoraBien.Text = "----";
+            this.FechayHoraBien.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
+            // 
+            // mspGestionMain
+            // 
+            this.mspGestionMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gestionToolStripMenuItem,
             this.listadoReportesToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(460, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.mspGestionMain.Location = new System.Drawing.Point(0, 0);
+            this.mspGestionMain.Name = "mspGestionMain";
+            this.mspGestionMain.Size = new System.Drawing.Size(460, 24);
+            this.mspGestionMain.TabIndex = 1;
+            this.mspGestionMain.Text = "menuStrip1";
             // 
             // gestionToolStripMenuItem
             // 
@@ -110,31 +117,27 @@
             // activosToolStripMenuItem
             // 
             this.activosToolStripMenuItem.Name = "activosToolStripMenuItem";
-            this.activosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.activosToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.activosToolStripMenuItem.Text = "Activos";
-            // 
-            // FechayHoraBien
-            // 
-            this.FechayHoraBien.Name = "FechayHoraBien";
-            this.FechayHoraBien.Size = new System.Drawing.Size(27, 17);
-            this.FechayHoraBien.Text = "----";
-            this.FechayHoraBien.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.ClientSize = new System.Drawing.Size(460, 492);
             this.Controls.Add(this.StaStrip);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.mspGestionMain);
+            this.MainMenuStrip = this.mspGestionMain;
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Gestion de Ventas de Seguros";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.StaStrip.ResumeLayout(false);
             this.StaStrip.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.mspGestionMain.ResumeLayout(false);
+            this.mspGestionMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,7 +147,7 @@
 
         private System.Windows.Forms.StatusStrip StaStrip;
         private System.Windows.Forms.ToolStripStatusLabel FechHoraStatustrip;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip mspGestionMain;
         private System.Windows.Forms.ToolStripMenuItem gestionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem proveedoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registroDeProveedoresToolStripMenuItem;

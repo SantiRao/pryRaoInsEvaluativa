@@ -60,7 +60,7 @@
             this.Controls.Add(this.LBLnOMBRE);
             this.Name = "frmLogo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmLogo";
+            this.Text = "VRAO\'S SECURES";
             this.Load += new System.EventHandler(this.frmLogo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

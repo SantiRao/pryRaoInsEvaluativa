@@ -33,6 +33,7 @@ namespace pryRaoInsEvaluativa
                 this.Hide();
                 frmInicioSesion frmInicioSes = new frmInicioSesion();
                 frmInicioSes.Show();
+                Tempo = 0;
                 Temporizador.Enabled = false;
             }
         }

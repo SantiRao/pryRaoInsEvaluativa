@@ -32,7 +32,7 @@
             this.txtContraseña = new System.Windows.Forms.TextBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblContra = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblInicioSesion = new System.Windows.Forms.Label();
             this.btnIniciarSesion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -68,14 +68,15 @@
             this.lblContra.TabIndex = 3;
             this.lblContra.Text = "Contraseña";
             // 
-            // label3
+            // lblInicioSesion
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(131, 36);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "label3";
+            this.lblInicioSesion.AutoSize = true;
+            this.lblInicioSesion.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInicioSesion.Location = new System.Drawing.Point(91, 30);
+            this.lblInicioSesion.Name = "lblInicioSesion";
+            this.lblInicioSesion.Size = new System.Drawing.Size(133, 18);
+            this.lblInicioSesion.TabIndex = 4;
+            this.lblInicioSesion.Text = "Inicio de Sesión";
             // 
             // btnIniciarSesion
             // 
@@ -92,12 +93,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(309, 243);
             this.Controls.Add(this.btnIniciarSesion);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblInicioSesion);
             this.Controls.Add(this.lblContra);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.txtContraseña);
             this.Controls.Add(this.txtUsuario);
             this.Name = "frmInicioSesion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmInicioSesion";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -110,7 +112,7 @@
         private System.Windows.Forms.TextBox txtContraseña;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblContra;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblInicioSesion;
         private System.Windows.Forms.Button btnIniciarSesion;
     }
 }
