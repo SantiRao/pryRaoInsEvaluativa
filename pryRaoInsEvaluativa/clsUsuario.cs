@@ -52,5 +52,40 @@ namespace pryRaoInsEvaluativa
             sw.WriteLine(usuario + " - Fecha: " + DateTime.Now);
             sw.Close();
         }
+
+        public static void CargarCombo(string RutaArchivo, int IndiceColumna, ComboBox Combo)
+        {
+            List<string> ValoresColumna = LeerColumna(RutaArchivo, IndiceColumna);
+            Combo.Items.AddRange(ValoresColumna.ToArray());
+        }
+
+        private static List<string> LeerColumna(string RutaArchivoCSV, int IndiceColumnaCSV)
+        {
+            List<string> ValoresColumna = new List<string>();
+
+            try
+            {
+                using (StreamReader lector = new StreamReader(RutaArchivoCSV))
+                {
+                    while (!lector.EndOfStream)
+                    {
+                        string linea = lector.ReadLine();
+                        string[] columnas = linea.Split(',');
+
+                        if (linea.Length > IndiceColumnaCSV)
+                        {
+                            ValoresColumna.Add(columnas[IndiceColumnaCSV]);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al leer el archivo CSV" + ex.Message);
+                throw;
+            }
+
+            return ValoresColumna;
+        }
     }
 }
