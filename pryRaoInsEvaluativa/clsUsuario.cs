@@ -5,52 +5,106 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
+using System.Data.OleDb;
+using System.Data;
 
 namespace pryRaoInsEvaluativa
 {
     internal class clsUsuario
     {
 
-        public string Usuario {get;set;}
-        public string Contraseña {get;set;}
-        public string Username { get;set;}
+        public string Usuario { get; set; }
+        public string Contraseña { get; set; }
+        public string Username { get; set; }
 
-        public static bool Login (string Usuario, string Contraseña)
-        {
-            string ArchivoUsuario = "Usuarios.txt";
+        //public static bool Login(string Usuario, string Contraseña)
+        //{
+        //    string ArchivoUsuario = "Usuarios.txt";
 
-            if (File.Exists(ArchivoUsuario))
-            {
-                using (StreamReader sr = new StreamReader(ArchivoUsuario))
-                {
-                    string linea;
+        //    if (File.Exists(ArchivoUsuario))
+        //    {
+        //        using (StreamReader sr = new StreamReader(ArchivoUsuario))
+        //        {
+        //            string linea;
 
-                    while ((linea = sr.ReadLine()) != null )
-                    {
-                        string[] partes = linea.Split(':');
+        //            while ((linea = sr.ReadLine()) != null)
+        //            {
+        //                string[] partes = linea.Split(':');
 
-                        if (partes.Length == 3)
-                        {
-                            string UsuarioArchivo = partes[0];
-                            string ContraseñaArchivo = partes[1];
+        //                if (partes.Length == 3)
+        //                {
+        //                    string UsuarioArchivo = partes[0];
+        //                    string ContraseñaArchivo = partes[1];
 
-                            if (Usuario == UsuarioArchivo && Contraseña == ContraseñaArchivo)
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
+        //                    if (Usuario == UsuarioArchivo && Contraseña == ContraseñaArchivo)
+        //                    {
+        //                        return true;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
         public static void RegistroLogin(string usuario)
         {
-            StreamWriter sw = new StreamWriter("login Inicio.txt", true);
+            StreamWriter sw = new StreamWriter("Login Inicio.txt", true);
             sw.WriteLine(usuario + " - Fecha: " + DateTime.Now);
             sw.Close();
+        }
+
+        OleDbCommand Comando;
+        OleDbConnection Conexion;
+        OleDbDataReader Lector;
+
+        public string RutadeConexion;
+        public string CadenaConexion;
+
+        public string EstadoConexion = "CERRADO";
+
+        public string InstruccionSQL = "INSERT INTO Logs" +
+            "('IdUsuario', 'Contraseña', 'FechaHora', 'Categoria')" +
+            "VALUES ('Prueba', 'prueba', '10/10/2023', 'prueba')";
+
+        public clsUsuario()
+        {
+            RutadeConexion = @"../../BD/BDLaboratorio3.accdb";
+            CadenaConexion = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + RutadeConexion;
+            EstadoConexion = "CERRADO";
+        }
+
+        public void ConectarBD()
+        {
+            try
+            {
+                Conexion = new OleDbConnection();
+                Conexion.ConnectionString = CadenaConexion;
+                Conexion.Open();
+                EstadoConexion = "ABIERTO";
+            }
+            catch (Exception error)
+            {
+                EstadoConexion = error.Message;
+            }
+        }
+
+        public void RegistrarLog()
+        {
+            try
+            {
+                Comando = new OleDbCommand();
+                Comando.Connection = Conexion;
+                Comando.CommandType = System.Data.CommandType.Text;
+                Comando.CommandText = InstruccionSQL;
+                Comando.ExecuteNonQuery();
+                EstadoConexion = "Registro Exitoso";
+            }
+            catch (Exception error)
+            {
+                EstadoConexion = error.Message;
+            }
         }
 
         public static void CargarCombo(string RutaArchivo, int IndiceColumna, ComboBox Combo)

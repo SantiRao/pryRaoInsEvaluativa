@@ -42,34 +42,36 @@ namespace pryRaoInsEvaluativa
             string Usuario = txtUsuario.Text;
             string Contraseña = txtContraseña.Text;
 
-            if (clsUsuario.Login(Usuario, Contraseña))
-            {
-                clsUsuario UsuarioActual = new clsUsuario
-                {
-                    Usuario = Usuario,
-                    Contraseña = Contraseña
+
+
+            //if (clsUsuario.Login(Usuario, Contraseña))
+            //{
+            //    clsUsuario UsuarioActual = new clsUsuario
+            //    {
+            //        Usuario = Usuario,
+            //        Contraseña = Contraseña
                     
-                };
+            //    };
 
-                UsuarioActual.Username = Usuario;
+            //    UsuarioActual.Username = Usuario;
 
-                clsUsuario.RegistroLogin(Usuario);
-                MessageBox.Show("Inicio de Sesion Exitoso!");
-                this.Hide();
-                frmMain d = new frmMain();
-                d.ShowDialog();
+            //    clsUsuario.RegistroLogin(Usuario);
+            //    MessageBox.Show("Inicio de Sesion Exitoso!");
+            //    this.Hide();
+            //    frmMain d = new frmMain();
+            //    d.ShowDialog();
 
-            }
-            else
-            {
-                MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                intentos++;
-                MessageBox.Show(intentos + " de 3 intentos");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    intentos++;
+            //    MessageBox.Show(intentos + " de 3 intentos");
 
-                txtUsuario.Clear();
-                txtContraseña.Clear();
+            //    txtUsuario.Clear();
+            //    txtContraseña.Clear();
 
-            }
+            //}
 
             if (intentos > 3)
             {
