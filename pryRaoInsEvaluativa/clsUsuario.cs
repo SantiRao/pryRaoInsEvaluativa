@@ -75,6 +75,14 @@ namespace pryRaoInsEvaluativa
             EstadoConexion = "CERRADO";
         }
 
+        public clsUsuario(string CadenaConexion)
+        {
+            RutadeConexion = @"../../BD/BDLaboratorio3.accdb";
+            CadenaConexion = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + RutadeConexion;
+            EstadoConexion = "CERRADO";
+        }
+
+
         public void ConectarBD()
         {
             try
@@ -106,6 +114,31 @@ namespace pryRaoInsEvaluativa
                 EstadoConexion = error.Message;
             }
         }
+
+        public bool ValidacionUsuario(string Usuario, string Contraseña)
+        {
+
+            Conexion = new OleDbConnection();
+
+            string LeerUsuarios = "SELECT * FROM Usuarios " +
+                                      "WHERE Nombre =" + Usuario + 
+                                      "AND Contraseña =" + Contraseña;
+
+            using(OleDbCommand cmd = new OleDbCommand(LeerUsuarios, Conexion)) 
+            {
+                Comando.Connection = Conexion;
+                Comando.CommandType = System.Data.CommandType.Text;
+                Comando.CommandText = LeerUsuarios;
+
+                cmd.Parameters.AddWithValue("@Nombre", Usuario);
+                cmd.Parameters.AddWithValue("@Contraseña", Contraseña);
+
+                int validado = (int)cmd.ExecuteScalar();
+
+                return validado > 0;
+            }
+        }
+
 
         public static void CargarCombo(string RutaArchivo, int IndiceColumna, ComboBox Combo)
         {

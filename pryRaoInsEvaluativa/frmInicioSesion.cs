@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Data.OleDb;
 
 namespace pryRaoInsEvaluativa
 {
@@ -16,6 +17,7 @@ namespace pryRaoInsEvaluativa
         public frmInicioSesion()
         {
             InitializeComponent();
+
         }
 
         private void txtUsuario_TextChanged(object sender, EventArgs e)
@@ -42,7 +44,19 @@ namespace pryRaoInsEvaluativa
             string Usuario = txtUsuario.Text;
             string Contraseña = txtContraseña.Text;
 
+            string CadenaConexion = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source " +
+                                       "= ../../BD/BDLaboratorio3.accdb";
 
+            clsUsuario ObjUsuario = new clsUsuario(CadenaConexion);
+
+            if (ObjUsuario.ValidacionUsuario(Usuario, Contraseña))
+            {
+                MessageBox.Show("Inicio de Sesion Exitoso");
+            }
+            else
+            {
+                MessageBox.Show("Inicio de Sesion Denegado. Intentelo nuevamente");       
+            }
 
             //if (clsUsuario.Login(Usuario, Contraseña))
             //{
@@ -50,7 +64,7 @@ namespace pryRaoInsEvaluativa
             //    {
             //        Usuario = Usuario,
             //        Contraseña = Contraseña
-                    
+
             //    };
 
             //    UsuarioActual.Username = Usuario;
@@ -74,10 +88,16 @@ namespace pryRaoInsEvaluativa
             //}
 
             if (intentos > 3)
-            {
-                MessageBox.Show("Intente de nuevo en 24hs");
-                txtUsuario.Enabled = false;
-            }
+                {
+                    MessageBox.Show("Intente de nuevo en 24hs");
+                    txtUsuario.Enabled = false;
+                }
+        }
+
+        private void frmInicioSesion_Load(object sender, EventArgs e)
+        {
+            //string CadenaConexion = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source = ../../BD/BDLaboratorio3.accdb";
+            //OleDbConnection Conexion = new OleDbConnection(CadenaConexion);
         }
     }
 }
