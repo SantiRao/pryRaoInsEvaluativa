@@ -26,5 +26,11 @@ namespace pryRaoInsEvaluativa
         {
             FechayHoraBien.Text = DateTime.Now.ToLongDateString();
         }
+
+        private void registroDeProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRegistroProovedores d = new frmRegistroProovedores();
+            d.ShowDialog();
+        }
     }
 }

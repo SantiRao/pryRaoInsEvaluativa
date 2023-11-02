@@ -97,6 +97,7 @@
             this.registroDeProveedoresToolStripMenuItem.Name = "registroDeProveedoresToolStripMenuItem";
             this.registroDeProveedoresToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.registroDeProveedoresToolStripMenuItem.Text = "Registro de Proveedores";
+            this.registroDeProveedoresToolStripMenuItem.Click += new System.EventHandler(this.registroDeProveedoresToolStripMenuItem_Click);
             // 
             // listadoReportesToolStripMenuItem
             // 
@@ -111,7 +112,7 @@
             this.proveedoresToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.activosToolStripMenuItem});
             this.proveedoresToolStripMenuItem1.Name = "proveedoresToolStripMenuItem1";
-            this.proveedoresToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.proveedoresToolStripMenuItem1.Size = new System.Drawing.Size(139, 22);
             this.proveedoresToolStripMenuItem1.Text = "Proveedores";
             // 
             // activosToolStripMenuItem

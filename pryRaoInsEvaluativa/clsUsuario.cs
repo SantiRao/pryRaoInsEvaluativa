@@ -117,33 +117,48 @@ namespace pryRaoInsEvaluativa
 
         public bool ValidacionUsuario(string Usuario, string Contraseña)
         {
+            string RutadeConexion = @"../../BD/BDLaboratorio3.accdb";
+            string CadenaConexion = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + RutadeConexion;
 
-            Conexion = new OleDbConnection();
-
-            string LeerUsuarios = "SELECT * FROM Usuarios " +
-                                      "WHERE Nombre =" + Usuario + 
-                                      "AND Contraseña =" + Contraseña;
-
-            using(OleDbCommand cmd = new OleDbCommand(LeerUsuarios, Conexion)) 
+            using (OleDbConnection Conexion = new OleDbConnection(CadenaConexion))
             {
-                Comando.Connection = Conexion;
-                Comando.CommandType = System.Data.CommandType.Text;
-                Comando.CommandText = LeerUsuarios;
+                try
+                {
+                    Conexion.Open();
 
-                cmd.Parameters.AddWithValue("@Nombre", Usuario);
-                cmd.Parameters.AddWithValue("@Contraseña", Contraseña);
+                    string LeerUsuarios = "SELECT COUNT(*) FROM Usuarios " +
+                                           "WHERE Nombre = @Nombre AND Contraseña = @Contraseña";
 
-                int validado = (int)cmd.ExecuteScalar();
+                    using (OleDbCommand cmd = new OleDbCommand(LeerUsuarios, Conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@Nombre", Usuario);
+                        cmd.Parameters.AddWithValue("@Contraseña", Contraseña);
 
-                return validado > 0;
+                        int validado = (int)cmd.ExecuteScalar();
+
+                        return validado > 0;
+                    }
+                }
+                catch (Exception error)
+                {
+
+                    Console.WriteLine("Error en la validación de usuario: " + error.Message);
+                    return false;
+                }
             }
         }
 
-
         public static void CargarCombo(string RutaArchivo, int IndiceColumna, ComboBox Combo)
         {
-            List<string> ValoresColumna = LeerColumna(RutaArchivo, IndiceColumna);
-            Combo.Items.AddRange(ValoresColumna.ToArray());
+            if (File.Exists(RutaArchivo))
+            {
+                List<string> ValoresColumna = LeerColumna(RutaArchivo, IndiceColumna);
+                Combo.Items.AddRange(ValoresColumna.ToArray());
+            }
+            else
+            {
+                MessageBox.Show("El archivo CSV no existe en la ruta especificada.");
+            }
         }
 
         private static List<string> LeerColumna(string RutaArchivoCSV, int IndiceColumnaCSV)
@@ -159,7 +174,7 @@ namespace pryRaoInsEvaluativa
                         string linea = lector.ReadLine();
                         string[] columnas = linea.Split(',');
 
-                        if (linea.Length > IndiceColumnaCSV)
+                        if (IndiceColumnaCSV >= 0 && IndiceColumnaCSV < columnas.Length)
                         {
                             ValoresColumna.Add(columnas[IndiceColumnaCSV]);
                         }
@@ -168,11 +183,11 @@ namespace pryRaoInsEvaluativa
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al leer el archivo CSV" + ex.Message);
+                MessageBox.Show("Error al leer el archivo CSV: " + ex.Message);
                 throw;
             }
 
             return ValoresColumna;
         }
     }
-}
+ }

@@ -52,6 +52,10 @@ namespace pryRaoInsEvaluativa
             if (ObjUsuario.ValidacionUsuario(Usuario, Contraseña))
             {
                 MessageBox.Show("Inicio de Sesion Exitoso");
+
+                this.Hide();
+                frmMain d = new frmMain();
+                d.ShowDialog();
             }
             else
             {
