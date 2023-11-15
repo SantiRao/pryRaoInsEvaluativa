@@ -147,56 +147,111 @@ namespace pryRaoInsEvaluativa
                 }
             }
         }
-        public static void CargarCombo(string RutaArchivo, int IndiceColumna, ComboBox Combo)
-        {
-            try
-            {
-                if (File.Exists(RutaArchivo))
-                {
-                    List<string> ValoresColumna = LeerColumna(RutaArchivo, IndiceColumna);
-                    Combo.Items.AddRange(ValoresColumna.ToArray());
-                }
-                else
-                {
-                    MessageBox.Show("El archivo CSV no existe en la ruta especificada.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar el combo: " + ex.Message);
-            }
-        }
+        //public static void CargarCombo(string RutaArchivo, int IndiceColumna, ComboBox Combo)
+        //{
+        //    try
+        //    {
+        //        if (File.Exists(RutaArchivo))
+        //        {
+        //            List<string> ValoresColumna = LeerColumna(RutaArchivo, IndiceColumna);
+        //            Combo.Items.AddRange(ValoresColumna.ToArray());
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("El archivo CSV no existe en la ruta especificada.");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error al cargar el combo: " + ex.Message);
+        //    }
+        //}
 
-        private static List<string> LeerColumna(string RutaArchivoCSV, int IndiceColumnaCSV)
-        {
-            List<string> ValoresColumna = new List<string>();
+        //private static List<string> LeerColumna(string RutaArchivoCSV, int IndiceColumnaCSV)
+        //{
+        //    List<string> ValoresColumna = new List<string>();
 
-            try
-            {
-                using (StreamReader lector = new StreamReader(RutaArchivoCSV))
-                {
+        //    try
+        //    {
+        //        using (StreamReader lector = new StreamReader(RutaArchivoCSV))
+        //        {
                    
-                    lector.ReadLine();
+        //            lector.ReadLine();
 
-                    while (!lector.EndOfStream)
+        //            while (!lector.EndOfStream)
+        //            {
+        //                string linea = lector.ReadLine();
+        //                string[] columnas = linea.Split(',');
+
+        //                if (IndiceColumnaCSV >= 0 && IndiceColumnaCSV < columnas.Length)
+        //                {
+        //                    ValoresColumna.Add(columnas[IndiceColumnaCSV]);
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error al leer el archivo CSV: " + ex.Message);
+        //    }
+
+        //    return ValoresColumna;
+        //}
+
+        public void CargarInfo(DataGridView grilla, ComboBox cmbJuzg, ComboBox cmbJuri, ComboBox cmbLiqui)
+        {
+            string archivoProveedor = "Listado de aseguradores.csv";
+
+            try
+            {
+
+                using (StreamReader sr = new StreamReader(archivoProveedor))
+                {
+                    string readLine = sr.ReadLine();
+                    if (readLine != null)
                     {
-                        string linea = lector.ReadLine();
-                        string[] columnas = linea.Split(',');
+                        string[] separador = readLine.Split(';');
 
-                        if (IndiceColumnaCSV >= 0 && IndiceColumnaCSV < columnas.Length)
+
+                        HashSet<string> jurisdicciones = new HashSet<string>();
+                        HashSet<string> responsables = new HashSet<string>();
+                        HashSet<string> juzgados = new HashSet<string>();
+
+                        while (!sr.EndOfStream)
                         {
-                            ValoresColumna.Add(columnas[IndiceColumnaCSV]);
+                            readLine = sr.ReadLine();
+                            separador = readLine.Split(';');
+                            grilla.Rows.Add(separador);
+
+                            juzgados.Add(separador[4]);
+                            jurisdicciones.Add(separador[5]);
+                            responsables.Add(separador[7]);
+
+                        }
+
+                        foreach (string jurisdiccion in jurisdicciones)
+                        {
+                            cmbJuri.Items.Add(jurisdiccion);
+                        }
+
+                        foreach (string juzgado in juzgados)
+                        {
+                            cmbJuzg.Items.Add(juzgado);
+                        }
+
+                        foreach (string liquida in responsables)
+                        {
+                            cmbLiqui.Items.Add(liquida);
                         }
                     }
                 }
             }
-
             catch (Exception ex)
             {
-                MessageBox.Show("Error al leer el archivo CSV: " + ex.Message);
-            }
 
-            return ValoresColumna;
+                MessageBox.Show("Error al cargar el archivo: " + ex.Message, "ERROR", MessageBoxButtons.OK);
+            }
         }
     }
 }
