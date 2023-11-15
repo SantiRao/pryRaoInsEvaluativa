@@ -20,7 +20,7 @@ namespace pryRaoInsEvaluativa
 
         private void frmRegistroProovedores_Load(object sender, EventArgs e)
         {
-            string CadenaConexion = "Listado de aseguradores.csv";
+            string CadenaConexion = "../../BD/Listado de aseguradores.csv";
 
             clsUsuario.CargarCombo(CadenaConexion, 5, cboJuzgado);
             clsUsuario.CargarCombo(CadenaConexion, 6, cboJurisdiccion);

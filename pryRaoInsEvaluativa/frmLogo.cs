@@ -37,5 +37,10 @@ namespace pryRaoInsEvaluativa
                 Temporizador.Enabled = false;
             }
         }
+
+        private void frmLogo_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Temporizador.Enabled = false;
+        }
     }
 }

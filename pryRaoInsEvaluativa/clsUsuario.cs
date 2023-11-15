@@ -147,17 +147,23 @@ namespace pryRaoInsEvaluativa
                 }
             }
         }
-
         public static void CargarCombo(string RutaArchivo, int IndiceColumna, ComboBox Combo)
         {
-            if (File.Exists(RutaArchivo))
+            try
             {
-                List<string> ValoresColumna = LeerColumna(RutaArchivo, IndiceColumna);
-                Combo.Items.AddRange(ValoresColumna.ToArray());
+                if (File.Exists(RutaArchivo))
+                {
+                    List<string> ValoresColumna = LeerColumna(RutaArchivo, IndiceColumna);
+                    Combo.Items.AddRange(ValoresColumna.ToArray());
+                }
+                else
+                {
+                    MessageBox.Show("El archivo CSV no existe en la ruta especificada.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("El archivo CSV no existe en la ruta especificada.");
+                MessageBox.Show("Error al cargar el combo: " + ex.Message);
             }
         }
 
@@ -169,6 +175,7 @@ namespace pryRaoInsEvaluativa
             {
                 using (StreamReader lector = new StreamReader(RutaArchivoCSV))
                 {
+                   
                     lector.ReadLine();
 
                     while (!lector.EndOfStream)
@@ -183,13 +190,13 @@ namespace pryRaoInsEvaluativa
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show("Error al leer el archivo CSV: " + ex.Message);
-                throw;
             }
 
             return ValoresColumna;
         }
     }
- }
+}

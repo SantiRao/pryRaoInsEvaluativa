@@ -61,6 +61,7 @@
             this.Name = "frmLogo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VRAO\'S SECURES";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmLogo_FormClosed);
             this.Load += new System.EventHandler(this.frmLogo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
