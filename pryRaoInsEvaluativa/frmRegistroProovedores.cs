@@ -18,9 +18,12 @@ namespace pryRaoInsEvaluativa
             InitializeComponent();
         }
 
-        private void frmRegistroProovedores_Load(object sender, EventArgs e)
+           clsUsuario ObjP = new clsUsuario();
+
+        public void frmRegistroProovedores_Load(object sender, EventArgs e)
         {
-            string CadenaConexion = "../../BD/Listado de aseguradores.csv";
+         ObjP.CargarInfo(dgvProovedores,cboJuzgado, cboJurisdiccion, cboLiquidador);
+        }
 
             clsUsuario.CargarCombo(CadenaConexion, 5, cboJuzgado);
             clsUsuario.CargarCombo(CadenaConexion, 6, cboJurisdiccion);
