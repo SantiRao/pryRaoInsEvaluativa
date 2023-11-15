@@ -169,6 +169,8 @@ namespace pryRaoInsEvaluativa
             {
                 using (StreamReader lector = new StreamReader(RutaArchivoCSV))
                 {
+                    lector.ReadLine();
+
                     while (!lector.EndOfStream)
                     {
                         string linea = lector.ReadLine();
