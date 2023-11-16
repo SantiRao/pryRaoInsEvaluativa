@@ -201,7 +201,7 @@ namespace pryRaoInsEvaluativa
 
         public void CargarInfo(DataGridView grilla, ComboBox cmbJuzg, ComboBox cmbJuri, ComboBox cmbLiqui)
         {
-            string archivoProveedor = "Listado de aseguradores.csv";
+            string archivoProveedor = "../../CSV/Listado de aseguradores.csv";
 
             try
             {
