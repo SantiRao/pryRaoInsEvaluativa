@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.mrcRegistro = new System.Windows.Forms.GroupBox();
+            this.cboJuzgado = new System.Windows.Forms.ComboBox();
+            this.lblJurisdiccion = new System.Windows.Forms.Label();
             this.cboLiquidador = new System.Windows.Forms.ComboBox();
             this.cboJurisdiccion = new System.Windows.Forms.ComboBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
@@ -47,9 +49,15 @@
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.lblJurisdiccion = new System.Windows.Forms.Label();
-            this.cboJuzgado = new System.Windows.Forms.ComboBox();
             this.dgvProovedores = new System.Windows.Forms.DataGridView();
+            this.Numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Entidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apertura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nexpediente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Juzgado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Jurisdiccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Liquidador = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mrcRegistro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProovedores)).BeginInit();
             this.SuspendLayout();
@@ -78,6 +86,23 @@
             this.mrcRegistro.TabIndex = 0;
             this.mrcRegistro.TabStop = false;
             this.mrcRegistro.Text = "Registro";
+            // 
+            // cboJuzgado
+            // 
+            this.cboJuzgado.FormattingEnabled = true;
+            this.cboJuzgado.Location = new System.Drawing.Point(346, 39);
+            this.cboJuzgado.Name = "cboJuzgado";
+            this.cboJuzgado.Size = new System.Drawing.Size(100, 21);
+            this.cboJuzgado.TabIndex = 17;
+            // 
+            // lblJurisdiccion
+            // 
+            this.lblJurisdiccion.AutoSize = true;
+            this.lblJurisdiccion.Location = new System.Drawing.Point(282, 101);
+            this.lblJurisdiccion.Name = "lblJurisdiccion";
+            this.lblJurisdiccion.Size = new System.Drawing.Size(62, 13);
+            this.lblJurisdiccion.TabIndex = 16;
+            this.lblJurisdiccion.Text = "Jurisdiccion";
             // 
             // cboLiquidador
             // 
@@ -229,30 +254,62 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // lblJurisdiccion
-            // 
-            this.lblJurisdiccion.AutoSize = true;
-            this.lblJurisdiccion.Location = new System.Drawing.Point(282, 101);
-            this.lblJurisdiccion.Name = "lblJurisdiccion";
-            this.lblJurisdiccion.Size = new System.Drawing.Size(62, 13);
-            this.lblJurisdiccion.TabIndex = 16;
-            this.lblJurisdiccion.Text = "Jurisdiccion";
-            // 
-            // cboJuzgado
-            // 
-            this.cboJuzgado.FormattingEnabled = true;
-            this.cboJuzgado.Location = new System.Drawing.Point(346, 39);
-            this.cboJuzgado.Name = "cboJuzgado";
-            this.cboJuzgado.Size = new System.Drawing.Size(100, 21);
-            this.cboJuzgado.TabIndex = 17;
-            // 
             // dgvProovedores
             // 
             this.dgvProovedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProovedores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Numero,
+            this.Entidad,
+            this.Apertura,
+            this.Nexpediente,
+            this.Juzgado,
+            this.Jurisdiccion,
+            this.Direccion,
+            this.Liquidador});
             this.dgvProovedores.Location = new System.Drawing.Point(12, 336);
             this.dgvProovedores.Name = "dgvProovedores";
             this.dgvProovedores.Size = new System.Drawing.Size(462, 276);
             this.dgvProovedores.TabIndex = 5;
+            // 
+            // Numero
+            // 
+            this.Numero.HeaderText = "Numero";
+            this.Numero.Name = "Numero";
+            // 
+            // Entidad
+            // 
+            this.Entidad.HeaderText = "Entidad";
+            this.Entidad.Name = "Entidad";
+            // 
+            // Apertura
+            // 
+            this.Apertura.HeaderText = "Apertura";
+            this.Apertura.Name = "Apertura";
+            // 
+            // Nexpediente
+            // 
+            this.Nexpediente.HeaderText = "Nº Expediente";
+            this.Nexpediente.Name = "Nexpediente";
+            // 
+            // Juzgado
+            // 
+            this.Juzgado.HeaderText = "Juzgado";
+            this.Juzgado.Name = "Juzgado";
+            // 
+            // Jurisdiccion
+            // 
+            this.Jurisdiccion.HeaderText = "Jurisdiccion";
+            this.Jurisdiccion.Name = "Jurisdiccion";
+            // 
+            // Direccion
+            // 
+            this.Direccion.HeaderText = "Direccion";
+            this.Direccion.Name = "Direccion";
+            // 
+            // Liquidador
+            // 
+            this.Liquidador.HeaderText = "Liquidador Responsable";
+            this.Liquidador.Name = "Liquidador";
             // 
             // frmRegistroProovedores
             // 
@@ -299,5 +356,13 @@
         private System.Windows.Forms.Label lblJurisdiccion;
         private System.Windows.Forms.ComboBox cboJuzgado;
         private System.Windows.Forms.DataGridView dgvProovedores;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Numero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Entidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Apertura;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nexpediente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Juzgado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Jurisdiccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Liquidador;
     }
 }
